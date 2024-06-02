@@ -17,6 +17,15 @@ export default function App() {
   const [inputUnit, setInputUnit] = useState("C");
   const [outputUnit, setOutputUnit] = useState("F");
   
+  const updateInputUnit = (newInputUnitValue) => {
+    setInputUnit(newInputUnitValue);
+    console.log("Input unit updated to:", newInputUnitValue);
+  };
+
+  const updateOutputUnit = (newOutputUnitValue) => {
+    setOutputUnit(newOutputUnitValue);
+    console.log("Output unit updated to:", newOutputUnitValue);
+  };
 
   function convertInput() {
     //Convertis de l'entrée en nombre réel
@@ -57,14 +66,13 @@ export default function App() {
     }
 
     setOutputValue(result);
-    setInputUnit(UnitChoice.state);
   }
 
   return (
     <View style={styles.container}>
       <Text>Valeur initiale en: </Text>
 
-      <UnitChoice/>
+      <UnitChoice onUnitChange={updateInputUnit}/>
       <TextInput
         style={{
           padding: 10,
@@ -77,18 +85,8 @@ export default function App() {
         keyboardType="numeric"
         onChangeText={setInputValue}
       />
-      <View style={styles.selector}>
-        <Text>convertir en: </Text>
-        <View style={styles.buttonContainer}>
-          <Button title="C" onPress={() => setOutputUnit("C")} />
-        </View>
-        <View style={styles.buttonContainer}>
-          <Button title="F" onPress={() => setOutputUnit("F")} />
-        </View>
-        <View style={styles.buttonContainer}>
-          <Button title="K" onPress={() => setOutputUnit("K")} />
-        </View>
-      </View>
+
+      <UnitChoice onUnitChange={updateOutputUnit}/>
       <Button title="Convertir" onPress={() => convertInput()} />
       <View>
         <Text>{outputValue}</Text>

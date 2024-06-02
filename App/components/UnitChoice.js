@@ -1,8 +1,8 @@
-import { useState, createContext } from "react";
+import { useState} from "react";
 import { View, Image, StyleSheet, TouchableOpacity } from "react-native";
 
 
-function UnitChoice() {
+function UnitChoice({onUnitChange}) {
   const [isCelsiusSelected, setIsCelsiusSelected] = useState(true);
   const [isFahrenheitSelected, setIsFahrenheitSelected] = useState(false);
   const [isKelvinSelected, setIsKelvinSelected] = useState(false);
@@ -17,8 +17,6 @@ function UnitChoice() {
   const kelvinNotSelected = require("../assets/kelvin-icon.png");
   const kelvinSelected = require("../assets/kelvin-selected-icon.png");
 
-  
-
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -26,8 +24,9 @@ function UnitChoice() {
           setIsCelsiusSelected(!isCelsiusSelected);
           setIsFahrenheitSelected(false);
           setIsKelvinSelected(false);
-          if (isCelsiusSelected) {
-            isUnitState("Celcius");
+          if (!isCelsiusSelected) {
+            isUnitState('C');
+            onUnitChange('C');
           }
         }}
       >
@@ -41,8 +40,9 @@ function UnitChoice() {
           setIsFahrenheitSelected(!isFahrenheitSelected);
           setIsCelsiusSelected(false);
           setIsKelvinSelected(false);
-          if (isFahrenheitSelected) {
-            isUnitState("F");
+          if (!isFahrenheitSelected) {
+            isUnitState('F');
+            onUnitChange('F');
           }
         }}
       >
@@ -58,8 +58,9 @@ function UnitChoice() {
           setIsKelvinSelected(!isKelvinSelected);
           setIsCelsiusSelected(false);
           setIsFahrenheitSelected(false);
-          if (isKelvinSelected) {
-            isUnitState("K");
+          if (!isKelvinSelected) {
+            isUnitState('K');
+            onUnitChange('K');
           }
         }}
       >
