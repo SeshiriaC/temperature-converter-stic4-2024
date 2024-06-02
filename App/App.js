@@ -1,6 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import UnitChoice from "./components/UnitChoice";
 import {
   CelciusToFahrenheit,
   CelciusToKelvin,
@@ -9,19 +10,21 @@ import {
   KelvinToCelcius,
   KelvinToFahrenheit,
 } from "./utils/conversions";
-import UnitChoice from "./components/UnitChoice";
+
 
 export default function App() {
   const [inputValue, setInputValue] = useState("");
   const [outputValue, setOutputValue] = useState("");
   const [inputUnit, setInputUnit] = useState("C");
   const [outputUnit, setOutputUnit] = useState("F");
-  
+
+  //Mise à jour de l'unité de la valeur d'entrée de la conversion
   const updateInputUnit = (newInputUnitValue) => {
     setInputUnit(newInputUnitValue);
     console.log("Input unit updated to:", newInputUnitValue);
   };
 
+  //Mise à jour de l'unité de la valeur de sortie de la conversion
   const updateOutputUnit = (newOutputUnitValue) => {
     setOutputUnit(newOutputUnitValue);
     console.log("Output unit updated to:", newOutputUnitValue);
@@ -44,7 +47,7 @@ export default function App() {
         result = CelciusToFahrenheit(input) + " °F";
       } else if (outputUnit === "K") {
         result = CelciusToKelvin(input) + " K";
-      } else if (outputUnit === "C"){
+      } else if (outputUnit === "C") {
         result = input + " °C";
       }
     } else if (inputUnit === "F") {
@@ -64,32 +67,37 @@ export default function App() {
         result = input + " K";
       }
     }
-
     setOutputValue(result);
   }
 
   return (
     <View style={styles.container}>
-      <Text>Valeur initiale en: </Text>
+      <Text style={styles.input}>Valeur initiale en: </Text>
+      <UnitChoice onUnitChange={updateInputUnit} />
 
-      <UnitChoice onUnitChange={updateInputUnit}/>
+      <Text style={styles.input}>Convertir en: </Text>
+      <UnitChoice onUnitChange={updateOutputUnit} />
+
+      <Text style={styles.input}>Température à convertir: </Text>
       <TextInput
         style={{
           padding: 10,
           width: 265,
           height: 40,
+          marginBottom: 30,
           backgroundColor: "#D9D9D9",
           borderRadius: 10,
+          fontSize: 18,
         }}
         defaultValue="0"
         keyboardType="numeric"
         onChangeText={setInputValue}
       />
 
-      <UnitChoice onUnitChange={updateOutputUnit}/>
-      <Button title="Convertir" onPress={() => convertInput()} />
+      <Button title="Convertir" color="#4B64F2" onPress={() => convertInput()} />
       <View>
-        <Text>{outputValue}</Text>
+        <Text style={styles.output}>Solution:</Text>
+        <Text style={styles.output}>{outputValue}</Text>
       </View>
       <StatusBar style="auto" />
     </View>
@@ -111,5 +119,12 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     marginHorizontal: 10,
+  },
+  input: {
+    fontSize: 18,
+  },
+  output: {
+    margin: 50,
+    fontSize: 20,
   },
 });
