@@ -9,12 +9,14 @@ import {
   KelvinToCelcius,
   KelvinToFahrenheit,
 } from "./utils/conversions";
+import UnitChoice from "./components/UnitChoice";
 
 export default function App() {
   const [inputValue, setInputValue] = useState("");
   const [outputValue, setOutputValue] = useState("");
   const [inputUnit, setInputUnit] = useState("C");
   const [outputUnit, setOutputUnit] = useState("F");
+  
 
   function convertInput() {
     //Convertis de l'entrée en nombre réel
@@ -33,7 +35,7 @@ export default function App() {
         result = CelciusToFahrenheit(input) + " °F";
       } else if (outputUnit === "K") {
         result = CelciusToKelvin(input) + " K";
-      } else {
+      } else if (outputUnit === "C"){
         result = input + " °C";
       }
     } else if (inputUnit === "F") {
@@ -55,22 +57,14 @@ export default function App() {
     }
 
     setOutputValue(result);
+    setInputUnit(UnitChoice.state);
   }
 
   return (
     <View style={styles.container}>
-      <View style={styles.selector}>
-        <Text>Valeur initiale en: </Text>
-        <View style={styles.buttonContainer}>
-          <Button title="C" onPress={() => setInputUnit("C")} />
-        </View>
-        <View style={styles.buttonContainer}>
-          <Button title="F" onPress={() => setInputUnit("F")} />
-        </View>
-        <View style={styles.buttonContainer}>
-          <Button title="K" onPress={() => setInputUnit("K")} />
-        </View>
-      </View>
+      <Text>Valeur initiale en: </Text>
+
+      <UnitChoice/>
       <TextInput
         style={{
           padding: 10,
