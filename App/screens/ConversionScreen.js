@@ -3,11 +3,11 @@ import { useState } from "react";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 import UnitChoice from "../components/UnitChoice";
 import {
-  CelciusToFahrenheit,
-  CelciusToKelvin,
-  FahrenheitToCelcius,
+  CelsiusToFahrenheit,
+  CelsiusToKelvin,
+  FahrenheitToCelsius,
   FahrenheitToKelvin,
-  KelvinToCelcius,
+  KelvinToCelsius,
   KelvinToFahrenheit,
 } from "../utils/conversions";
 
@@ -38,15 +38,15 @@ export default function ConversionScreen() {
     let result;
     if (inputUnit === "C") {
       if (outputUnit === "F") {
-        result = CelciusToFahrenheit(input) + " °F";
+        result = CelsiusToFahrenheit(input) + " °F";
       } else if (outputUnit === "K") {
-        result = CelciusToKelvin(input) + " K";
+        result = CelsiusToKelvin(input) + " K";
       } else if (outputUnit === "C") {
         result = input + " °C";
       }
     } else if (inputUnit === "F") {
       if (outputUnit === "C") {
-        result = FahrenheitToCelcius(input) + " °C";
+        result = FahrenheitToCelsius(input) + " °C";
       } else if (outputUnit === "K") {
         result = FahrenheitToKelvin(input) + " K";
       } else {
@@ -54,7 +54,7 @@ export default function ConversionScreen() {
       }
     } else if (inputUnit === "K") {
       if (outputUnit === "C") {
-        result = KelvinToCelcius(input) + " °C";
+        result = KelvinToCelsius(input) + " °C";
       } else if (outputUnit === "F") {
         result = KelvinToFahrenheit(input) + " °F";
       } else {
@@ -82,11 +82,11 @@ export default function ConversionScreen() {
         onChangeText={setInputValue}
       />
       <View style={styles.subcontainer}>
-        <Text style={styles.input}>Valeur initiale en: </Text>
+        <Text style={styles.input}>Unité initiale:</Text>
         <UnitChoice onUnitChange={updateInputUnit} />
       </View>
       <View style={styles.subcontainer}>
-        <Text style={styles.input}>Convertir en: </Text>
+        <Text style={styles.input}>Convertir en:</Text>
         <UnitChoice onUnitChange={updateOutputUnit} />
       </View>
       <Button
@@ -112,18 +112,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   subcontainer: {
+    flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
-    padding: 15,
+    justifyContent: "flex-start",
+    padding: 0,
     height: 100,
     width: 265,
     margin: 0,
-  },
-  selector: {
-    margin: 10,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
   },
   input: {
     fontSize: 18,
@@ -140,5 +135,5 @@ const styles = StyleSheet.create({
   },
   button: {
     fontSize: 50,
-  }
+  },
 });
