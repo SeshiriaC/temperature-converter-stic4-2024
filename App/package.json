@@ -11,10 +11,12 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@expo-google-fonts/roboto": "^0.2.3",
     "@mui/material": "^5.15.19",
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/native-stack": "^6.9.26",
     "expo": "^51.0.9",
+    "expo-font": "~12.0.6",
     "expo-status-bar": "^1.12.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
