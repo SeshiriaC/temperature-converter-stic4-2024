@@ -6,16 +6,16 @@ export default function SplashScreen() {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <View style={styles.subcontainer}>
+      <View style={styles.subContainer}>
         <Image
           source={require("../assets/logo.png")}
           style={{ width: 250, height: 300 }}
         />
         <Text style={{ fontSize: 18 }}></Text>
       </View>
-      <View style={styles.buttongroup}>
+      <View style={styles.buttonGroup}>
         <TouchableOpacity onPress={() => navigation.navigate("Formule")}>
-          <View style={styles.subconatiner}>
+          <View style={styles.subConatiner}>
             <Image
               source={require("../assets/formules.png")}
               style={styles.button}
@@ -24,7 +24,7 @@ export default function SplashScreen() {
           </View>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate("Conversion")}>
-          <View style={styles.subconatiner}>
+          <View style={styles.subConatiner}>
             <Image
               source={require("../assets/calculatrice.png")}
               style={styles.button}
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  subconatiner: {
+  subConatiner: {
     paddingHorizontal: 10,
     paddingVertical: 5,
     marginVertical: 10,
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     width: 35,
     height: 35,
   },
-  buttongroup: {
+  buttonGroup: {
     marginVertical: 20,
     flexDirection: "column",
     alignItems: "start",
