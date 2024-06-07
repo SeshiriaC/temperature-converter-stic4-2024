@@ -46,25 +46,25 @@ export default function ConversionScreen() {
     let result;
     if (inputUnit === "C") {
       if (outputUnit === "F") {
-        result = CelsiusToFahrenheit(input) + " °F";
+        result = CelsiusToFahrenheit(input).toFixed(4) + " °F";
       } else if (outputUnit === "K") {
-        result = CelsiusToKelvin(input) + " K";
+        result = CelsiusToKelvin(input).toFixed(4) + " K";
       } else if (outputUnit === "C") {
         result = input + " °C";
       }
     } else if (inputUnit === "F") {
       if (outputUnit === "C") {
-        result = FahrenheitToCelsius(input) + " °C";
+        result = FahrenheitToCelsius(input).toFixed(4) + " °C";
       } else if (outputUnit === "K") {
-        result = FahrenheitToKelvin(input) + " K";
+        result = FahrenheitToKelvin(input).toFixed(4) + " K";
       } else {
         result = input + " °F";
       }
     } else if (inputUnit === "K") {
       if (outputUnit === "C") {
-        result = KelvinToCelsius(input) + " °C";
+        result = KelvinToCelsius(input).toFixed(4) + " °C";
       } else if (outputUnit === "F") {
-        result = KelvinToFahrenheit(input) + " °F";
+        result = KelvinToFahrenheit(input).toFixed(4) + " °F";
       } else {
         result = input + " K";
       }
