@@ -1,35 +1,49 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
+import { useFonts, Roboto_400Regular } from "@expo-google-fonts/roboto";
 
-export default function SplashScreen() {
+export default function HomeScreen() {
   const navigation = useNavigation();
+
+  let [fontsLoaded] = useFonts({
+    "Roboto-Regular" : Roboto_400Regular,
+  });
+
+  if (!fontsLoaded) {
+    return console.log('Font not loaded');
+  }
+
   return (
     <View style={styles.container}>
-      <View style={styles.subContainer}>
+      <View>
         <Image
           source={require("../assets/logo.png")}
           style={{ width: 250, height: 300 }}
         />
-        <Text style={{ fontSize: 18 }}></Text>
+        <Text style={{ fontFamily: "Roboto-Regular", fontSize: 18 }}></Text>
       </View>
       <View style={styles.buttonGroup}>
         <TouchableOpacity onPress={() => navigation.navigate("Formule")}>
-          <View style={styles.subConatiner}>
+          <View style={styles.subContainer}>
             <Image
               source={require("../assets/formules.png")}
               style={styles.button}
             />
-            <Text style={{ fontSize: 20 }}>Formule</Text>
+            <Text style={{ fontFamily: "Roboto-Regular", fontSize: 20 }}>
+              Formule
+            </Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate("Conversion")}>
-          <View style={styles.subConatiner}>
+          <View style={styles.subContainer}>
             <Image
               source={require("../assets/calculatrice.png")}
               style={styles.button}
             />
-            <Text style={{ fontSize: 20 }}>Conversion</Text>
+            <Text style={{ fontFamily: "Roboto-Regular", fontSize: 20 }}>
+              Conversion
+            </Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -45,7 +59,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  subConatiner: {
+  subContainer: {
     paddingHorizontal: 10,
     paddingVertical: 5,
     marginVertical: 10,

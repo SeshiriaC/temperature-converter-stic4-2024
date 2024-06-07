@@ -1,6 +1,14 @@
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Button,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  TouchableOpacity,
+  Image,
+} from "react-native";
 import UnitChoice from "../components/UnitChoice";
 import {
   CelsiusToFahrenheit,
@@ -15,7 +23,7 @@ export default function ConversionScreen() {
   const [inputValue, setInputValue] = useState("");
   const [outputValue, setOutputValue] = useState("");
   const [inputUnit, setInputUnit] = useState("C");
-  const [outputUnit, setOutputUnit] = useState("F");
+  const [outputUnit, setOutputUnit] = useState("C");
 
   const updateInputUnit = (newInputUnitValue) => {
     setInputUnit(newInputUnitValue);
@@ -66,15 +74,15 @@ export default function ConversionScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.input}>Température à convertir: </Text>
+      <Text style={styles.input}>Température à convertir</Text>
       <TextInput
         style={{
           padding: 10,
           width: 265,
-          height: 40,
+          height: 40, 
           marginBottom: 30,
           backgroundColor: "#D9D9D9",
-          borderRadius: 10,
+          borderRadius: 50,
           fontSize: 18,
         }}
         defaultValue="0"
@@ -89,14 +97,17 @@ export default function ConversionScreen() {
         <Text style={styles.input}>Convertir en:</Text>
         <UnitChoice onUnitChange={updateOutputUnit} />
       </View>
-      <Button
-        title="Convertir"
-        color="#4B64F2"
-        style={styles.button}
-        onPress={() => convertInput()}
-      />
+      <TouchableOpacity onPress={() => convertInput()}>
+        <View style={styles.button}>
+          <Image
+            source={require("../assets/convertir.png")}
+            style={styles.buttonIcon}
+          />
+          <Text style={{ fontSize: 20 }}>Convertir</Text>
+        </View>
+      </TouchableOpacity>
       <View style={styles.resultContainer}>
-        <Text style={styles.outputLabel}>Solution:</Text>
+        <Text style={styles.outputLabel}>Solution</Text>
         <Text style={styles.output}>{outputValue}</Text>
       </View>
       <StatusBar style="auto" />
@@ -114,7 +125,7 @@ const styles = StyleSheet.create({
   subcontainer: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "flex-start",
+    justifyContent: "space-between",
     padding: 0,
     height: 100,
     width: 265,
@@ -131,9 +142,26 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   output: {
-    fontSize: 20,
+    fontSize: 30,
+    color: "#4B64F2",
+    marginHorizontal:50,
+    justifyContent: "center",
   },
   button: {
-    fontSize: 50,
+    paddingHorizontal: 5,
+    paddingVertical: 5,
+    marginVertical: 10,
+    borderWidth: 1,
+    borderRadius: 50,
+    width: 175,
+    borderColor: "#4B64F2",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+  },
+  buttonIcon: {
+    marginRight: 5,
+    width: 35,
+    height: 35,
   },
 });

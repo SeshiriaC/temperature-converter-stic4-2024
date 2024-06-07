@@ -75,7 +75,7 @@ function UnitChoice({onUnitChange}) {
 
 const styles = StyleSheet.create({
   container: {
-    margin: 10,
+    margin: 5,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
